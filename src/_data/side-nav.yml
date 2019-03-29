@@ -28,7 +28,7 @@
 - title: Libraries
   urlExactMatch: true
   match-page-url-exactly: true
-  expanded: true
+  expanded: false
   children:
     - title: Overview
       permalink: /guides/libraries
@@ -38,21 +38,30 @@
 - title: Platforms
   urlExactMatch: true
   match-page-url-exactly: true
-  expanded: true
+  expanded: false
   children:
-    - title: Overview
-      permalink: /guides/platforms
-    - title: Mobile (Flutter)
-      permalink: https://flutter.io
-    - title: Web
-      permalink: https://webdev.dartlang.org
-    - title: Server
-      permalink: /server
+    - title: "Native & JS overview"
+      permalink: /platforms/overview
+    - title: App frameworks
+      permalink: /platforms/frameworks
+    - title: "A tour of Dart Native"
+      permalink: /platforms/native-get-started
+    - title: "A tour of Dart Web"
+      permalink: /platforms/web-get-started
+    - title: Platform integration
+      expanded: false
+      children:
+        - title: C/C++ interop
+          permalink: /platforms/c-interop
+        - title: JS/TS interop
+          permalink: /platforms/js-interop
+        - title: Embedding the Dart VM
+          permalink: /platforms/vm-embedding
 
 - title: Testing
   urlExactMatch: true
   match-page-url-exactly: true
-  expanded: true
+  expanded: false
   children:
     - title: Overview
       permalink: /guides/testing
@@ -61,7 +70,7 @@
   # permalink: /resources
   # urlExactMatch: true
   # match-page-url-exactly: true
-  expanded: true
+  expanded: false
   children:
   - title: Install
     permalink: /install
