@@ -45,9 +45,9 @@
     - title: App frameworks
       permalink: /platforms/frameworks
     - title: "A tour of Dart Native"
-      permalink: /platforms/native-get-started
+      permalink: /platforms/native-tour
     - title: "A tour of Dart Web"
-      permalink: /platforms/web-get-started
+      permalink: /platforms/web-tour
     - title: Platform integration
       expanded: false
       children:
