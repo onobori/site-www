@@ -3,7 +3,7 @@ layout: default
 title: "A tour of Dart Web"
 short-title: Get-started
 description: "A guide to get you quickly writing web apps in Dart."
-toc: false
+toc: true
 ---
 
 {% assign channel = site.data.pkg-vers.SDK.channel -%}
