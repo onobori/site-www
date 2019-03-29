@@ -67,4 +67,4 @@ More information: [`dartdevc` compiler](/tools/dartdevc), [`webdev` tool](/tools
 The `dart2js` tool compiles Dart code to fast & compact, deployable JavaScript.
 It employes a number of techniques such as dead-code elimination, 
 
-More information: [`dart2js` compiler](/tools/dart2js), [`webdev` tool](/tools/webdev)
+More information: [`dart2js` compiler](/tools/dart2js), [`webdev` tool](/tools/webdev), [deployment tips](/platforms/web-deployment)
