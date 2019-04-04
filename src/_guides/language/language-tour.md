@@ -4380,3 +4380,338 @@ To learn more about Dart's core libraries, see
 [Symbol]: {{site.dart_api}}/{{site.data.pkg-vers.SDK.channel}}/dart-core/Symbol-class.html
 [synchronous-async-start]: https://github.com/dart-lang/sdk/blob/master/docs/newsletter/20170915.md#synchronous-async-start
 [Type]: {{site.dart_api}}/{{site.data.pkg-vers.SDK.channel}}/dart-core/Type-class.html
+
+Dart 2.2 is now available, with faster native code and support for set literals.
+Learn more.
+現在Dart 2.2が利用可能です。ネイティブコードが高速化され、集合リテラルがサポートさ
+れるようになりました。詳細はこちら。
+
+A Tour of the Dart Language
+Dart言語ツアー
+
+This page shows you how to use each major Dart feature, from variables and
+operators to classes and libraries, with the assumption that you already know
+how to program in another language.
+このページでは変数や演算子やクラスやライブラリといった、Dartの主要な各機能について
+示していきます。どのようにプログラムを書くかについて他の言語で経験のある人を対象に
+しています。
+
+To learn more about Dart’s core libraries, see A Tour of the Dart Libraries. When
+ever you want more details about a language feature, consult the Dart language spe
+cification.
+Dartのコアライブラリを学ぶためには、Dartライブラリツアーを参照してください。言語機
+能の詳細が知りたくなったときはいつでも、Dart言語仕様書を当たってください。
+
+Tip: You can play with most of Dart’s language features using DartPad (learn more
+).
+豆知識：Dart言語機能のほとんどはDartPad上で確認することができます（詳細はこちら）。
+
+Open DartPad
+A basic Dart program
+基本的なDartプログラム
+The following code uses many of Dart’s most basic features:
+以下のコードはDartの最も基本的な機能を多く利用しています。
+
+// Define a function.
+// 関数の定義
+printInteger(int aNumber) {
+? print('The number is $aNumber.'); // Print to console.
+? // コンソールへ表示
+}
+
+// This is where the app starts executing.
+// ここはアプリが動作を開始する場所です。
+main() {
+? var number = 42; // Declare and initialize a variable.
+? // 変数の宣言と初期化
+? printInteger(number); // Call a function.
+? // 関数の呼び出し
+}
+
+Here’s what this program uses that applies to all (or almost all) Dart apps:
+このプログラムには全ての（あるいはほとんど全ての）Dartアプリに適用可能な機能があり
+ます。
+
+// This is a comment.
+// これはコメントです
+
+? ? A single-line comment. Dart also supports multi-line and document comments.
+For details, see Comments.
+? ? 単一行コメントです。Dartは複数行コメントとドキュメントコメントもサポートしてい
+ます。詳細は仕様書のコメントを参照してください。
+int
+
+? ? A type. Some of the other built-in types are String, List, and bool.
+? ? 型。他の組み込み型の例として、文字列、リスト、論理値があります。
+42
+
+? ? A number literal. Number literals are a kind of compile-time constant.
+? ? 数値リテラル。数値リテラルはコンパイル時に定数へ変換されます。
+
+print()
+
+? ? A handy way to display output.
+? ? ディスプレイへ出力する手軽な方法です。
+
+'...' (or "...")
+
+? ? A string literal.
+? ? 文字列リテラル。
+
+$variableName (or ${expression})
+
+? ? String interpolation: including a variable or expression’s string equivalent
+inside of a string literal. For more information, see Strings.
+? ? 文字列補完。文字列リテラルの内側に変数や式の文字列を含んでいることに等しい。詳
+細は仕様書の文字列参照
+main()
+
+? ? The special, required, top-level function where app execution starts. For
+more information, see The main() function.
+? ? アプリが実行される際の、特別で必要な、トップレベルの関数。詳細はmain()関数を参
+照
+var
+
+? ? A way to declare a variable without specifying its type.
+? ? 型を指定することなく変数を宣言する方法。
+
+Note: This site’s code follows the conventions in the Dart style guide.
+このサイトのコードはDartスタイルガイドに準拠しています。
+
+Important concepts
+重要な概念
+
+As you learn about the Dart language, keep these facts and concepts in mind:
+Dart言語を学ぶ際は以下の事実と概念を心に留めておいてください。
+
+? ? Everything you can place in a variable is an object, and every object is an
+instance of a class. Even numbers, functions, and null are objects. All
+objects inherit from the Object class.
+? ? あなたが変数内に置く全てのものはオブジェクトであり、また全てのオブジェクトはク
+ラスのインスタンスです。たとえ数値や関数や、nullでさえオブジェクトです。全てのオブ
+ジェクトはObjectクラスを継承します。
+
+? ? Although Dart is strongly typed, type annotations are optional because Dart
+can infer types. In the code above, number is inferred to be of type int.
+When you want to explicitly say that no type is expected, use the special
+type dynamic.
+? ? Dartは強い静的型付け言語ですが、型注釈は無くてもかまいません。Dartは型推論を行
+います。上記のコードでは、数値は推論されて整数型になります。推論される型がないこと
+を明示したいときは、dynamicという特殊な型を使うことができます。
+
+? ? Dart supports generic types, like List<int> (a list of integers) or
+List<dynamic> (a list of objects of any type).
+? ? Dartはジェネリック型をサポートしているため、List<int>（整数のリスト）やList<dy
+namic>（任意の型のリスト）といった使い方ができます。
+
+? ? Dart supports top-level functions (such as main()), as well as functions
+tied to a class or object (static and instance methods, respectively). You
+can also create functions within functions (nested or local functions).
+? ? Dartは（main()関数のような）トップレベル関数をサポートしているため、（静的メソッ
+ドまたはインスタンスメソッドがそれぞれ出来るように）クラスやオブジェクトに関数を結
+びつけることができます。
+
+? ? Similarly, Dart supports top-level variables, as well as variables tied to a
+class or object (static and instance variables). Instance variables are
+sometimes known as fields or properties.
+? ? 同様に、Dartはトップレベル変数もサポートしており、（これまた静的またはインスタ
+ンス変数と同様に）変数をクラスやオブジェクトと結びつけることができます。インスタン
+ス変数はフィールドやプロパティという名前でも知られています。
+
+? ? Unlike Java, Dart doesn’t have the keywords public, protected, and private. I
+f an identifier starts with an underscore (_), it’s private to its library. For d
+etails, see Libraries and visibility.
+? ? Javaと違う箇所としては、Dartはpublicやprotectedやprivateといったキーワードを持
+ちません。ただし、識別子の先頭にアンダースコア(_)を付けたなら、それはそのライブラ
+リに対してプライベートになります。例は、ライブラリと可視性の項目を参照してください。
+
+? ? Identifiers can start with a letter or underscore (_), followed by any
+combination of those characters plus digits.
+? ? 識別子は文字とアンダースコア(_)から始めることができます。2文字目以降は文字と数
+字であればどんな組み合わせでも構いません。
+
+? ? Dart has both expressions (which have runtime values) and statements (which do
+n’t). For example, the conditional expression condition ? expr1 : expr2 has a val
+ue of expr1 or expr2. Compare that to an if-else statement, which has no value. A
+statement often contains one or more expressions, but an expression can’t directl
+y contain a statement.
+? ? Dartには(ランタイムの値を持つ)式と(ランタイムの値を持たない)文の二種類がありま
+す。たとえば、条件式「(条件) ? (式1) : (式2)」は(式1)と(式2)の値を持ちます。一方if
+-else文は値を持ちません。文はしばしば一つまたはそれ以上の式を持ちますが、式は直接
+的に文を持つことはできません。
+
+? ? Dart tools can report two kinds of problems: warnings and errors. Warnings are
+?just indications that your code might not work, but they don’t prevent your prog
+ram from executing. Errors can be either compile-time or run-time. A compile-time
+error prevents the code from executing at all; a run-time error results in an exce
+ption being raised while the code executes.
+? ? Dartツールは警告とエラーの二種類の問題を報告してくれます。警告は単に動かないか
+もしれないことを示すのみで、実際の動作を妨げるものではありません。エラーはコンパイ
+ル時と実行時の二種類があります。コンパイル時エラーはコードが全く動作しないことを示
+し、実行時エラーはコード実行の最中に例外が発生したことを示します。
+
+Keywords
+キーワード
+The following table lists the words that the Dart language treats specially.
+次の表はDartが特別に扱っている単語の一覧です。
+
+abstract 2? ? ? dynamic 2? ? ? ?implements 2? ? show 1
+as 2? ? else? ? import 2? ? ? ? static 2
+assert? enum? ? in? ? ? super
+async 1? ? ? ? ?export 2? ? ? ? interface 2? ? ?switch
+await 3? ? ? ? ?extends? ? ? ? ?is? ? ? sync 1
+break? ?external 2? ? ? library 2? ? ? ?this
+case? ? factory 2? ? ? ?mixin 2? ? ? ? ?throw
+catch? ?false? ?new? ? ?true
+class? ?final? ?null? ? try
+const? ?finally? ? ? ? ?on 1? ? typedef 2
+continue? ? ? ? for? ? ?operator 2? ? ? var
+covariant 2? ? ?Function 2? ? ? part 2? void
+default? ? ? ? ?get 2? ?rethrow? ? ? ? ?while
+deferred 2? ? ? hide 1? return? with
+do? ? ? if? ? ? set 2? ?yield 3
+
+Avoid using these words as identifiers. However, if necessary, the keywords
+marked with superscripts can be identifiers:
+以上の単語を識別子に使うことは避けましょう。しかし、もし必要ならば、数字がマークさ
+れたキーワードは識別子として使うことができます。
+
+? ? Words with the superscript 1 are contextual keywords, which have meaning only
+in specific places. They’re valid identifiers everywhere.
+? ? 数字1が付いた単語は文脈次第の単語です。つまりこの単語は特定の場所でのみ意味を
+持ちます。これらはどこでも合法な識別子となります。
+
+? ? Words with the superscript 2 are built-in identifiers. To simplify the task of
+?porting JavaScript code to Dart, these keywords are valid identifiers in most pla
+ces, but they can’t be used as class or type names, or as import prefixes.
+? ? 数字2がついた単語は組み込みの識別子です。JavaScriptのコードをDartに変換する作
+業を簡潔にするために、これらの単語はほとんどの場所で合法な識別子として扱われます。
+しかし、これらはクラスや型の名前、あるいはインポートの別名として使うことはできませ
+ん。
+
+? ? Words with the superscript 3 are newer, limited reserved words related to the
+asynchrony support that was added after Dart’s 1.0 release. You can’t use await
+or yield as an identifier in any function body marked with async, async*, or sync*.
+? ? 数字3が付いた単語は非同期サポートに関連した、比較的新しく制限された予約語です。
+Dart1.0がリリースされた後に追加されました。awaitやyieldはasyncやasync*、sync*がつ
+いた関数本体において、識別子として使うことはできません。
+
+All other words in the table are reserved words, which can’t be identifiers.
+表にある他の全ての単語は予約語であり、識別子として用いることはできません。
+
+Variables
+変数
+
+Here’s an example of creating a variable and initializing it:
+以下は変数の宣言と初期化の例です。
+
+var name = 'Bob';
+
+Variables store references. The variable called name contains a reference to a Str
+ing object with a value of “Bob”.
+変数は参照を保持します。この変数はnameという名前で呼ばれ、'Bob'という値を持った文
+字列オブジェクトへの参照を含んでいます。
+
+The type of the name variable is inferred to be String, but you can change that ty
+pe by specifying it. If an object isn’t restricted to a single type, specify the
+Object or dynamic type, following design guidelines.
+この変数nameの型は暗黙的に文字列となりますが、型を明示するよう変更することもできま
+す。もしオブジェクトが一つの型に制限できない場合は、Object型もしくはdynamic型を指
+定することができます。
+
+dynamic name = 'Bob';
+
+Another option is to explicitly declare the type that would be inferred:
+他には推測される型を明示的に宣言する方法があります。
+
+String name = 'Bob';
+
+Note: This page follows the style guide recommendation of using var, rather than
+type annotations, for local variables.
+注：このページではスタイルガイドに従っているため、ローカル変数に対して型宣言するの
+ではなくvarを用いています。
+
+Default value
+デフォルト値
+
+Uninitialized variables have an initial value of null. Even variables with
+numeric types are initially null, because numbers&#8212;like everything else in
+Dart&#8212;are objects.
+初期化されていない値は初期値としてnullを持ちます。数値型の変数でさえ初期値はnullに
+なります。なぜなら数値は、Dartにおける他の全ての要素と同様にオブジェクトであるから
+です。
+
+int lineCount;
+assert(lineCount == null);
+
+Note: The assert() call is ignored in production code. During development,
+assert(condition) throws an exception unless condition is true. For details, see
+Assert.
+注：assert()はプロダクションコードでは無視されます。開発中、assert(条件)で条件がtr
+ueでない限り例外を投げます。詳細はAssertの項を参照してください。
+
+Final and const
+Finalとconst
+
+If you never intend to change a variable, use final or const, either instead of va
+r or in addition to a type. A final variable can be set only once; a const variabl
+e is a compile-time constant. (Const variables are implicitly final.) A final top-
+level or class variable is initialized the first time it’s used.
+もしあなたが変数を決して変更したくないならば、varの代わりに、または宣言した型の前
+にfinalもしくはconstを使いましょう。final変数は一度だけ宣言できます。const変数はコ
+ンパイル時に定数になります（const変数は暗黙的にfinalになります）。finalのトップレ
+ベルまたはクラス変数はそれが最初に使われるタイミングで初期化されます。
+
+Note: Instance variables can be final but not const. Final instance variables must
+?be initialized before the constructor body starts &#8212; at the variable declara
+tion, by a constructor parameter, or in the constructor’s initializer list.
+注：インスタンス変数はfinalにはできますがconstにはできません。finalインスタンス変
+数はコンストラクタ本体が始まるよりも前、つまり変数宣言時の初期化、コンストラクタ引
+数による初期化、コンストラクタの初期化リストの中での初期化、のいずれかで初期化され
+なければなりません。
+
+Here’s an example of creating and setting a final variable:
+以下はfinal変数の宣言と設定の例です。
+
+final name = 'Bob'; // Without a type annotation
+// 型注釈なし
+final String nickname = 'Bobby';
+
+You can’t change the value of a final variable:
+final変数の値は変更することができません。
+
+name = 'Alice'; // Error: a final variable can only be set once.
+// エラー：final変数が設定できるのは一度だけです。
+
+Use const for variables that you want to be compile-time constants. If the const
+variable is at the class level, mark it static const. Where you declare the
+variable, set the value to a compile-time constant such as a number or string
+literal, a const variable, or the result of an arithmetic operation on constant
+numbers:
+コンパイル時に定数になってほしい変数にはconstを使いましょう。もしconst変数がクラス
+レベルであるならば、static constとしましょう。その変数を宣言した場所では、数値や文
+字列のリテラル、const変数、あるいは定数値における算術演算といったもので、コンパイ
+ル時の定数を設定しましょう。
+
+const bar = 1000000; // Unit of pressure (dynes/cm2)
+// 圧力の単位（ダイン/平方cm)
+const double atm = 1.01325 * bar; // Standard atmosphere
+// 一気圧
+
+The const keyword isn’t just for declaring constant variables. You can also use i
+t to create constant values, as well as to declare constructors that create consta
+nt values. Any variable can have a constant value.
+constという単語はただ定数変数を宣言するために使うだけではありません。
+
+var foo = const [];
+final bar = const [];
+const baz = []; // Equivalent to `const []`
+
+You can omit const from the initializing expression of a const declaration, like f
+or baz above. For details, see DON’T use const redundantly.
+
+You can change the value of a non-final, non-const variable, even if it used to
+have a const value:
+
+foo = [1, 2, 3]; // Was const []
+
