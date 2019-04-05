@@ -11,6 +11,7 @@ that you already know how to program in another language.
 
 To learn more about Dart's core libraries, see
 [A Tour of the Dart Libraries](/guides/libraries/library-tour).
+Dart言語ツアー
 Whenever you want more details about a language feature,
 consult the [Dart language specification][].
 
