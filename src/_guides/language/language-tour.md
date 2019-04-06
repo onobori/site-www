@@ -91,6 +91,107 @@ This site's code follows the conventions in the
 </div>
 
 
+---
+title: A Tour of the Dart Language
+description: A tour of all of the major Dart language features.
+short-title: Language Tour
+---
+<?code-excerpt replace="/([A-Z]\w*)\d\b/$1/g"?>
+
+This page shows you how to use each major Dart feature, from
+variables and operators to classes and libraries, with the assumption
+that you already know how to program in another language.
+このページでは変数や演算子やクラスやライブラリといった、Dartの主要な各機能について
+示していきます。どのようにプログラムを書くかについて他の言語で経験のある人を対象に
+しています。
+
+To learn more about Dart's core libraries, see
+[A Tour of the Dart Libraries](/guides/libraries/library-tour).
+Dart言語ツアー
+Whenever you want more details about a language feature,
+consult the [Dart language specification][].
+Dartのコアライブラリを学ぶためには、
+[Dartライブラリツアー](/guides/libraries/library-tour).
+を参照してください。言語機能の詳細が知りたくなったときはいつでも、Dart言語仕様書を当たってください。
+
+
+<div class="alert alert-info" markdown="1">
+**Tip:**
+You can play with most of Dart's language features using DartPad
+([learn more](/tools/dartpad)).
+豆知識：Dart言語機能のほとんどはDartPad上で確認することができます（[詳細はこちら](/tools/dartpad)）。
+
+**<a href="{{ site.custom.dartpad.direct-link }}" target="_blank">Open DartPad</a>**
+</div>
+
+
+## A basic Dart program
+
+The following code uses many of Dart’s most basic features:
+
+<?code-excerpt "misc/test/language_tour/basic_test.dart"?>
+{% prettify dart %}
+// Define a function.
+printInteger(int aNumber) {
+  print('The number is $aNumber.'); // Print to console.
+}
+
+// This is where the app starts executing.
+main() {
+  var number = 42; // Declare and initialize a variable.
+  printInteger(number); // Call a function.
+}
+{% endprettify %}
+
+Here’s what this program uses that applies to all (or almost all) Dart
+apps:
+
+<code>// <em>This is a comment.</em> </code>
+
+:   A single-line comment.
+    Dart also supports multi-line and document comments.
+    For details, see [Comments](#comments).
+
+`int`
+
+:   A type. Some of the other [built-in types](#built-in-types)
+    are `String`, `List`, and `bool`.
+
+`42`
+
+:   A number literal. Number literals are a kind of compile-time constant.
+
+`print()`
+
+:   A handy way to display output.
+
+`'...'` (or `"..."`)
+
+:   A string literal.
+
+<code>$<em>variableName</em></code> (or <code>${<em>expression</em>}</code>)
+
+:   String interpolation: including a variable or expression’s string
+    equivalent inside of a string literal. For more information, see
+    [Strings](#strings).
+
+`main()`
+
+:   The special, *required*, top-level function where app execution
+    starts. For more information, see
+    [The main() function](#the-main-function).
+
+`var`
+
+:   A way to declare a variable without specifying its type.
+
+<div class="alert alert-info" markdown="1">
+**Note:**
+This site's code follows the conventions in the
+[Dart style guide](/guides/language/effective-dart/style).
+</div>
+
+
 ## Important concepts
 
 As you learn about the Dart language, keep these facts and concepts in
@@ -301,8 +402,8 @@ of using `var`, rather than type annotations, for local variables.
 ### Default value
 
 Uninitialized variables have an initial value of `null`. Even variables
-with numeric types are initially null, because numbers—like everything
-else in Dart—are objects.
+with numeric types are initially null, because numbers?like everything
+else in Dart?are objects.
 
 <?code-excerpt "misc/test/language_tour/variables_test.dart (var-null-init)"?>
 {% prettify dart %}
@@ -331,7 +432,7 @@ the first time it's used.
 **Note:**
 Instance variables can be `final` but not `const`.
 Final instance variables must be initialized before
-the constructor body starts —
+the constructor body starts ?
 at the variable declaration, by a constructor parameter,
 or in the constructor's [initializer list](#initializer-list).
 </div>
@@ -421,8 +522,8 @@ PENDING: add info about support for Iterable, Future, Stream?
 Those can't be initialized using literals, but they do have special support.
 {% endcomment %}
 
-Because every variable in Dart refers to an object—an instance of a
-*class*—you can usually use *constructors* to initialize variables. Some
+Because every variable in Dart refers to an object?an instance of a
+*class*?you can usually use *constructors* to initialize variables. Some
 of the built-in types have their own constructors. For example, you can
 use the `Map()` constructor to create a map.
 
@@ -646,8 +747,8 @@ objects have type bool: the boolean literals `true` and `false`,
 which are both compile-time constants.
 
 Dart's type safety means that you can't use code like
-<code>if (<em>nonbooleanValue</em>)</code> or
-<code>assert (<em>nonbooleanValue</em>)</code>.
+<code>if?(<em>nonbooleanValue</em>)</code> or
+<code>assert?(<em>nonbooleanValue</em>)</code>.
 Instead, explicitly check for values, like this:
 
 <?code-excerpt "misc/test/language_tour/built_in_types_test.dart (no-truthy)"?>
@@ -925,10 +1026,10 @@ special syntax.
 
 The usual way to express a Unicode code point is
 `\uXXXX`, where XXXX is a 4-digit hexadecimal value.
-For example, the heart character (♥) is `\u2665`.
+For example, the heart character (?) is `\u2665`.
 To specify more or less than 4 hex digits,
 place the value in curly brackets.
-For example, the laughing emoji (😆) is `\u{1f600}`.
+For example, the laughing emoji (??) is `\u{1f600}`.
 
 The [String][]
 class has several properties you can use to extract rune information.
@@ -1058,7 +1159,7 @@ is sometimes referred to as _arrow_ syntax.
 
 <div class="alert alert-info" markdown="1">
 **Note:**
-Only an *expression*—not a *statement*—can appear between the arrow
+Only an *expression*?not a *statement*?can appear between the arrow
 (=\>) and the semicolon (;). For example, you can’t put an [if
 statement](#if-and-else) there, but you can use a [conditional
 expression](#conditional-expressions).
@@ -1493,22 +1594,22 @@ You can override many of these operators, as described in
 |--------------------------+------------------------------------------------|
 |Description               | Operator                                       |
 |--------------------------|------------------------------------------------|
-| unary postfix            | <code><em>expr</em>++</code>    <code><em>expr</em>--</code>    `()`    `[]`    `.`    `?.` |
-| unary prefix             | <code>-<em>expr</em></code>    <code>!<em>expr</em></code>    <code>~<em>expr</em></code>    <code>++<em>expr</em></code>    <code>--<em>expr</em></code>   |
-| multiplicative           | `*`    `/`    `%`    `~/`                      |
-| additive                 | `+`    `-`                                     |
-| shift                    | `<<`    `>>`    `>>>`                          |
+| unary postfix            | <code><em>expr</em>++</code> ?? <code><em>expr</em>--</code> ?? `()` ?? `[]` ?? `.` ?? `?.` |
+| unary prefix             | <code>-<em>expr</em></code> ?? <code>!<em>expr</em></code> ?? <code>~<em>expr</em></code> ?? <code>++<em>expr</em></code> ?? <code>--<em>expr</em></code> ??|
+| multiplicative           | `*` ?? `/` ?? `%`   ?`~/`                      |
+| additive                 | `+` ?? `-`                                     |
+| shift                    | `<<` ?? `>>` ?? `>>>`                          |
 | bitwise AND              | `&`                                            |
 | bitwise XOR              | `^`                                            |
 | bitwise OR               | `|`                                            |
-| relational&nbsp;and&nbsp;type&nbsp;test | `>=`    `>`    `<=`    `<`    `as`    `is`    `is!` |
-| equality                 | `==`    `!=`                                   |
+| relational&nbsp;and&nbsp;type&nbsp;test | `>=` ?? `>` ?? `<=` ?? `<` ?? `as` ?? `is` ?? `is!` |
+| equality                 | `==` ?? `!=` ??                                |
 | logical AND              | `&&`                                           |
 | logical OR               | `||`                                           |
 | if null                  | `??`                                           |
 | conditional              | <code><em>expr1</em> ? <em>expr2</em> : <em>expr3</em></code> |
 | cascade                  | `..`                                           |
-| assignment               | `=`    `*=`    `/=`    `+=`    `-=`    `&=`    `^=`    <em>etc.</em> |
+| assignment               | `=` ?? `*=` ?? `/=`  ??`+=`  ??`-=`  ??`&=`  ??`^=`  ??<em>etc.</em> |
 {:.table .table-striped}
 
 <aside class="alert alert-warning" markdown="1">
@@ -1565,7 +1666,7 @@ Dart supports the usual arithmetic operators, as shown in the following table.
 | Operator                    | Meaning                                   |
 |-----------------------------+-------------------------------------------|
 | `+`                         | Add
-| `–`                         | Subtract
+| `?`                         | Subtract
 | <code>-<em>expr</em></code> | Unary minus, also known as negation (reverse the sign of the expression)
 | `*`                         | Multiply
 | `/`                         | Divide
@@ -1595,8 +1696,8 @@ operators.
 |-----------------------------+-------------------------------------------|
 | <code>++<em>var</em></code> | <code><em>var</em> = <em>var</em> + 1</code> (expression value is <code><em>var</em> + 1</code>)
 | <code><em>var</em>++</code> | <code><em>var</em> = <em>var</em> + 1</code> (expression value is <code><em>var</em></code>)
-| <code>--<em>var</em></code> | <code><em>var</em> = <em>var</em> – 1</code> (expression value is <code><em>var</em> – 1</code>)
-| <code><em>var</em>--</code> | <code><em>var</em> = <em>var</em> – 1</code> (expression value is <code><em>var</em></code>)
+| <code>--<em>var</em></code> | <code><em>var</em> = <em>var</em> ? 1</code> (expression value is <code><em>var</em> ? 1</code>)
+| <code><em>var</em>--</code> | <code><em>var</em> = <em>var</em> ? 1</code> (expression value is <code><em>var</em></code>)
 {:.table .table-striped}
 
 Example:
@@ -1751,7 +1852,7 @@ main() {
 Compound assignment operators such as `+=` combine
 an operation with an assignment.
 
-| `=`  | `–=` | `/=`  | `%=`  | `>>=` | `^=`
+| `=`  | `?=` | `/=`  | `%=`  | `>>=` | `^=`
 | `+=` | `*=` | `~/=` | `<<=` | `&=`  | `|=`
 {:.table}
 
@@ -1835,7 +1936,7 @@ assert((value >> 4) == 0x02); // Shift right
 Dart has two operators that let you concisely evaluate expressions
 that might otherwise require [if-else](#if-and-else) statements:
 
-<code><em>condition</em> ? <em>expr1</em> : <em>expr2</em>
+<code><em>condition</em>???<em>expr1</em>?:?<em>expr2</em>
 : If _condition_ is true, evaluates _expr1_ (and returns its value);
   otherwise, evaluates and returns the value of _expr2_.
 
@@ -2262,7 +2363,7 @@ not required to catch any exceptions.
 Dart provides [Exception][] and [Error][]
 types, as well as numerous predefined subtypes. You can, of course,
 define your own exceptions. However, Dart programs can throw any
-non-null object—not just Exception and Error objects—as an exception.
+non-null object?not just Exception and Error objects?as an exception.
 
 ### Throw
 
@@ -2341,7 +2442,7 @@ and the second is the stack trace (a [StackTrace][] object).
 <?code-excerpt "misc/lib/language_tour/exceptions.dart (try-catch-2)" replace="/\(e.*?\)/[!$&!]/g"?>
 {% prettify dart %}
 try {
-  // ···
+  // ・・・
 } on Exception catch [!(e)!] {
   print('Exception details:\n $e');
 } catch [!(e, s)!] {
@@ -2754,7 +2855,7 @@ function call:
 {% prettify dart %}
 class Employee extends Person {
   Employee() : super.fromJson(getDefaultData());
-  // ···
+  // ・・・
 }
 {% endprettify %}
 
@@ -3031,7 +3132,7 @@ class EffectiveDoer extends Doer {
 
 ### Abstract classes
 
-Use the `abstract` modifier to define an *abstract class*—a class that
+Use the `abstract` modifier to define an *abstract class*?a class that
 can’t be instantiated. Abstract classes are useful for defining
 interfaces, often with some implementation. If you want your abstract
 class to appear to be instantiable, define a [factory
@@ -3114,7 +3215,7 @@ class Television {
     _illuminateDisplay();
     _activateIrSensor();
   }
-  // ···
+  // ・・・
 }
 
 class SmartTelevision [!extends!] Television {
@@ -3124,7 +3225,7 @@ class SmartTelevision [!extends!] Television {
     _initializeMemory();
     _upgradeApps();
   }
-  // ···
+  // ・・・
 }
 {% endprettify %}
 
@@ -3140,7 +3241,7 @@ intentionally overriding a member:
 class SmartTelevision extends Television {
   [!@override!]
   void turnOn() {...}
-  // ···
+  // ・・・
 }
 {% endprettify %}
 
@@ -3159,7 +3260,7 @@ Vector class, you might define a `+` method to add two vectors.
 `>`  | `/`  | `^`  | `[]=`
 `<=` | `~/` | `&`  | `~`
 `>=` | `*`  | `<<` | `==`
-`–`  | `%`  | `>>`
+`?`  | `%`  | `>>`
 {:.table}
 
 <div class="alert alert-info" markdown="1">
@@ -3180,7 +3281,7 @@ class Vector {
   Vector operator -(Vector v) => Vector(x - v.x, y - v.y);
 
   // Operator == and hashCode not shown. For details, see note below.
-  // ···
+  // ・・・
 }
 
 void main() {
@@ -3308,7 +3409,7 @@ names. The following example shows two classes that use mixins:
 <?code-excerpt "misc/lib/language_tour/classes/orchestra.dart (Musician and Maestro)" replace="/(with.*) \{/[!$1!] {/g"?>
 {% prettify dart %}
 class Musician extends Performer [!with Musical!] {
-  // ···
+  // ・・・
 }
 
 class Maestro extends Person
@@ -3345,14 +3446,14 @@ mixin Musical {
 }
 {% endprettify %}
 
-To specify that only certain types can use the mixin — for example,
-so your mixin can invoke a method that it doesn't define —
+To specify that only certain types can use the mixin ? for example,
+so your mixin can invoke a method that it doesn't define ?
 use `on` to specify the required superclass:
 
 <?code-excerpt "misc/lib/language_tour/classes/orchestra.dart (mixin-on)"?>
 {% prettify dart %}
 mixin MusicalPerformer on Musician {
-  // ···
+  // ・・・
 }
 {% endprettify %}
 
@@ -3384,7 +3485,7 @@ constants:
 {% prettify dart %}
 class Queue {
   static const initialCapacity = 16;
-  // ···
+  // ・・・
 }
 
 void main() {
@@ -3445,7 +3546,7 @@ can pass a static method as a parameter to a constant constructor.
 If you look at the API documentation for the basic array type,
 [List,][List] you’ll see that the
 type is actually `List<E>`. The \<...\> notation marks List as a
-*generic* (or *parameterized*) type—a type that has formal type
+*generic* (or *parameterized*) type?a type that has formal type
 parameters. [By convention][], most type variables have single-letter names,
 such as E, T, S, K, and V.
 
@@ -3736,7 +3837,7 @@ if and when it's needed.
 Here are some cases when you might use deferred loading:
 
 * To reduce an app's initial startup time.
-* To perform A/B testing—trying out
+* To perform A/B testing?trying out
   alternative implementations of an algorithm, for example.
 * To load rarely used functionality, such as optional screens and dialogs.
 
@@ -3835,7 +3936,7 @@ to wait for the result of an asynchronous function:
 await lookUpVersion();
 {% endprettify %}
 
-To use `await`, code must be in an _async function_—a
+To use `await`, code must be in an _async function_?a
 function marked as `async`:
 
 <?code-excerpt "misc/lib/language_tour/async.dart (checkVersion)" replace="/async|await/[!$&!]/g"?>
@@ -3916,8 +4017,8 @@ which returns a String:
 String lookUpVersion() => '1.0.0';
 {% endprettify %}
 
-If you change it to be an async function—for example,
-because a future implementation will be time consuming—the
+If you change it to be an async function?for example,
+because a future implementation will be time consuming?the
 returned value is a Future:
 
 <?code-excerpt "misc/lib/language_tour/async.dart (async-lookUpVersion)"?>
@@ -4715,4 +4816,5 @@ You can change the value of a non-final, non-const variable, even if it used to
 have a const value:
 
 foo = [1, 2, 3]; // Was const []
+
 
